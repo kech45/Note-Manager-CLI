@@ -31,18 +31,18 @@ def get_all_notes():
     conn.close()
     return rows
 
-def get_note_by_given_id(id : int):
+def get_note_by_given_id(note_id : int):
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM notes WHERE id = ?", (id,))
+    cursor.execute("SELECT * FROM notes WHERE id = ?", (note_id,))
     row = cursor.fetchone()
     conn.close()
     return row
 
-def delete_note_by_given_id(id : int):
+def delete_note_by_given_id(note_id : int):
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
-    cursor.execute("DELETE FROM notes WHERE id = ?", (id,))
+    cursor.execute("DELETE FROM notes WHERE id = ?", (note_id,))
     conn.commit()
     conn.close()
     
