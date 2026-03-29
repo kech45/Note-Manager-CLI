@@ -1,6 +1,6 @@
 import argparse
 from notes import storage
-from notes import logic
+from notes import manager
 
 def main():
     storage.initialize_db()
@@ -23,23 +23,20 @@ def main():
     
     try:
         if args.command == "add":
-            logic.add_note(args.title, args.content)
+            manager.add_note(args.title, args.content)
             print("Note added successfully!")
             
         elif args.command == "list":
-            notes = logic.get_all_notes()
+            notes = manager.get_all_notes()
             for note in notes:
                 print(f"{note.id} - {note.title}")
                 
         elif args.command == "show":
-            note = logic.get_note(args.id)
-            print(f"ID: {note.id}")
-            print(f"Title: {note.title}")
-            print(f"Content: {note.content}")
-            print(f"Created at: {note.created_at}")
+            note = manager.get_note(args.id)
+            print(note)
         
         elif args.command == "delete":
-            logic.delete_note(args.id)
+            manager.delete_note(args.id)
             print("Note deleted successfully!")
         else:
             parser.print_help()

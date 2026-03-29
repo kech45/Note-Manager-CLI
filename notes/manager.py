@@ -6,6 +6,13 @@ class Note:
         self.content = content
         self.created_at = created_at
         
+    def __repr__(self):
+        return (f"ID: {self.id}\n"
+                f"Title: {self.title}\n"
+                f"Content: {self.content}\n"
+                f"Created at: {self.created_at}\n"
+        )
+        
 def add_note(title : str, content : str):
     if not title.strip():
         raise ValueError("Title cannot be empty!")
