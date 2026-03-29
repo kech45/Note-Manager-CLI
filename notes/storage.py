@@ -19,7 +19,7 @@ def initialize_db():
 def add_note(title: str, content: str):
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
-    cursor.execute("INSERT INTO notes(title, content) VALUES (?, ?)", (title,content))
+    cursor.execute("INSERT INTO notes(title, content) VALUES (?, ?)", (title, content))
     conn.commit()
     conn.close()
     
