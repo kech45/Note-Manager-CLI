@@ -1,9 +1,8 @@
 import argparse
-from notes import storage
-from notes import manager
+from notes.manager import NotesManager
 
 def main():
-    storage.initialize_db()
+    manager = NotesManager()
     parser =  argparse.ArgumentParser(description="A simple command-line note manager")
     subparsers = parser.add_subparsers(dest="command")
     
