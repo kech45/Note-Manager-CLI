@@ -43,6 +43,6 @@ def main():
         else:
             parser.print_help()
     except Exception as e:
-        print("Unexpected error")
+        print(f"Unexpected error {e}")
         traceback.print_exc()
         sys.exit(1)
