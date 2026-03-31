@@ -31,6 +31,8 @@ class NotesManager:
         return notes
 
     def get_note(self, note_id : int):
+        if note_id <= 0:
+            raise ValueError("ID must be a positive number")
         note = self.storage.get_note_by_given_id(note_id)
         if note is None:
             raise ValueError("Note with given ID doesn't exist")
