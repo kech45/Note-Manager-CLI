@@ -1,3 +1,5 @@
+import sys
+import traceback
 import argparse
 from notes.manager import NotesManager
 
@@ -40,5 +42,7 @@ def main():
             print("Note deleted successfully!")
         else:
             parser.print_help()
-    except ValueError as e:
-        print(f"Error: {e}")
+    except Exception as e:
+        print("Unexpected error")
+        traceback.print_exc()
+        sys.exit(1)
