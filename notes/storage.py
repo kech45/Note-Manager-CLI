@@ -1,5 +1,6 @@
 import sqlite3
 
+
 class Storage:
 
     def __init__(self, db_path):
@@ -16,14 +17,16 @@ class Storage:
         """)
         conn.commit()
         conn.close()
-        
+
     def add_note(self, title: str, content: str):
         conn = sqlite3.connect(self.__db_path)
         cursor = conn.cursor()
-        cursor.execute("INSERT INTO notes(title, content) VALUES (?, ?)", (title, content))
+        cursor.execute(
+            "INSERT INTO notes(title, content) VALUES (?, ?)", (title, content)
+        )
         conn.commit()
         conn.close()
-        
+
     def get_all_notes(self):
         conn = sqlite3.connect(self.__db_path)
         cursor = conn.cursor()
@@ -32,7 +35,7 @@ class Storage:
         conn.close()
         return rows
 
-    def get_note_by_given_id(self, note_id : int):
+    def get_note_by_given_id(self, note_id: int):
         conn = sqlite3.connect(self.__db_path)
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM notes WHERE id = ?", (note_id,))
@@ -40,11 +43,9 @@ class Storage:
         conn.close()
         return row
 
-    def delete_note_by_given_id(self, note_id : int):
+    def delete_note_by_given_id(self, note_id: int):
         conn = sqlite3.connect(self.__db_path)
         cursor = conn.cursor()
         cursor.execute("DELETE FROM notes WHERE id = ?", (note_id,))
         conn.commit()
         conn.close()
-    
-
