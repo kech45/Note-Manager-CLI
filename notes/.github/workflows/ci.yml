@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, dev, feature/*]
+  pull_request:
+    branches: [ main, dev]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Python setup
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.13.5'
+
+      - name: Install tools
+        run: |
+          pip install -e .
+          pip install -r requirements.txt
+      
+      - name: Run linter
+        run: flake8 --max-line-length 88 notes/ tests/
+
+      - name: Run style checker
+        run: black --check notes/ tests/
+
+      - name: Run unit tests
+        run: python -m unittest discover
+        
+
+            
